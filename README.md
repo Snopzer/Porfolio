@@ -1,2 +1,2 @@
-# Porfolio
-Porfolio Wordpress Theme
+# Portfolio
+Portfolio Wordpress Theme
