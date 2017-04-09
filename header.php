@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Curriculum vitae a Personal Category  Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'meta_title' );	}else{	bloginfo('name');  ?> - <?php bloginfo('description');  }?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Curriculum vitae Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<meta name="description" content="<?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'meta_description' );	}	?>" />
+<meta name="keywords" content="<?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'meta_keywords' );	}	?>" />
 <script type="applisalonion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Custom Theme files -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.css" rel='stylesheet' type='text/css' />

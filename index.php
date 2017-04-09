@@ -4,24 +4,22 @@
 	<div class="banner">
 		<div class="container">
 			<div class="col-md-3 b-part1">
-				<img src="<?php bloginfo('template_url'); ?>/images/1.jpg" alt=" " />
-				<h1>Kristin Stewart</h1>
-				<h2>Web Designer</h2>
+				<img src="<?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'picture' );	}	?>" alt=" " />
+				<h1><?php bloginfo('name'); ?></h1>
+				<h2><?php bloginfo('description');  ?></h2>
 			</div>
 			<div class="col-md-3 b-part2">
 				<h3>Contact</h3>
-				<h4><a href="mailto:info@example.com">exam@gmail.com</a></h4>
-				<h4 class="agile">+18044261158</h4>
-				<h4>Richmond,USA</h4>
+				<h4><a><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'email' );	}	?></a></h4>
+				<h4 class="agile"><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'phone_number' );	}	?></h4>
+				<h4><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'address' );	}	?></h4>
 			</div>
 			<div class="col-md-3 b-part3">
 				<h3>Follow</h3>
-				<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-				<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-				<a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-				<a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a>
-				<a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-				<a href="#"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+				<?php if ( function_exists( 'ot_get_option' ) ) { echo ot_get_option( 'facebook_url' );	} ?>
+				<a href="<?php if ( function_exists( 'ot_get_option' ) ) { echo ot_get_option( 'facebook_url' );	} ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+				<a href="<?php if ( function_exists( 'ot_get_option' ) ) { echo ot_get_option( 'linkedin_url' );	} ?>"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+				<a href="<?php if ( function_exists( 'ot_get_option' ) ) { echo ot_get_option( 'google_plus_url' );	} ?>"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
 				
 			</div>
 			<div class="col-md-3 b-part4">
@@ -39,9 +37,8 @@
 		<div class="container">
 			<h3>About Me</h3>
 			<label class="line"></label>
-			<img src="<?php bloginfo('template_url'); ?>/images/1.jpg" alt=" " />
-			<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
-			<p>As opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum.</p>
+			<img src="<?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'picture' );	}	?>" alt=" " />
+			<p><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'about_me' );	}	?></p>
 		</div>
 	</div>
 	<!--//about-->
@@ -54,8 +51,7 @@
 			<label class="line"></label>
 			<div class="col-md-6 skills-left">
 				<h4>The standard chunk</h4>
-				<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
-				<p>As opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search of lorem ipsum</p> 	
+				<p><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'about_skills' );	}	?></p>	
 			</div>
 			<div class="col-md-6 skills-right">
 				<div class="bar_group">
@@ -75,7 +71,7 @@
 	<!-- download-->
 	<div class="download">
 		<h3>Download my resume here</h3>
-		<a href="#">Download</a>
+		<a href="<?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'resume' );	}	?>">Download</a>
 	</div>
 	<!-- //download -->
 	
@@ -87,13 +83,13 @@
 					<span> </span>
 				</div>
 				<div class="project-grid total-project">
-					<p>79</p>
+					<p><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'projects_count' );	}	?></p>
 					<p>Projects</p>
 					<span> <i class="p-icon"> </i></span>
 				</div>
 				<div class="project-grid clientsgrid">
 					<div>
-						<p>25</p>
+						<p><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'clients_count' );	}	?></p>
 						<p>Clients</p>
 					</div>
 					<span> <i class="p-icon"> </i></span>
@@ -116,236 +112,48 @@
 	<div id="portfolio" class="portfolio">
 		<div class="container">
 			<h3>My Portfolio</h3>
-			<?php
-				$args = array(
-				'posts_per_page'   => -1, // -1 here will return all posts
-				'post_type'        => 'projects', //your custom post type
-				'post_status'      => 'publish',
-				);
-				$projects = get_posts( $args );
-				
-				foreach ($projects as $project) {
-					printf('<div><a href="%s">%s</a></div>',
-					get_permalink($project->ID),
-					$project->post_title);
-				}
-			?>
-		</div>
-	</div>
-	<div id="portfolio" class="portfolio">
-		<div class="container">
-			<h3>My Portfolio</h3>
 			<label class="line"></label>
 			<div class="sap_tabs">			
 				<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul class="resp-tabs-list wow fadeInUp animated" data-wow-delay=".7s">
-						<li class="resp-tab-item"><span>All</span></li>
-						<li class="resp-tab-item"><span>Elements</span></li>
-						<li class="resp-tab-item"><span>Templates</span></li>
-						<li class="resp-tab-item"><span>Trending</span></li>				
+						<li class="resp-tab-item"><span>Works Where i Involved</span></li>
 					</ul>	
 					<div class="clearfix"> </div>	
 					<div class="resp-tabs-container">
 						<div class="tab-1 resp-tab-content">
 							<div class="tab_img">
-								<div class="col-md-4 portfolio-grids grid first">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".5s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g1.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g1.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>At veroeos</p>
-											</div>
-										</a>	
+								
+								<?php
+									$args = array(
+									'posts_per_page'   => -1, // -1 here will return all posts
+									'post_type'        => 'projects', //your custom post type
+									'post_status'      => 'publish',
+									);
+									$projects = get_posts( $args );
+									
+									foreach ($projects as $project) { ?>
+									
+									<?php //print_r($project);?>
+									<?php //echo wp_get_attachment_image($project->project_image, 'full') ?>
+									<?php $image = wp_get_attachment_image_src($project->project_image, 'full'); ?>
+									<?php //echo "Image : ".get_the_post_thumbnail($project->ID, 'project_image');?>
+									
+									
+									<div class="col-md-4 portfolio-grids grid first">
+										<div class="effect1 wow fadeInUp animated" data-wow-delay=".5s">
+											<a href="<?php echo $image[0];?>" class="swipebox" title="<?php echo $project->project_description;?>">
+												<img src="<?php echo $image[0];?>" alt="" class="img-responsive" />
+												<div class="figcaption">
+													<p><?php echo $project->project_title;?></p>
+												</div>
+											</a>	
+										</div>
 									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".7s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g2.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g2.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Ducimus vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".9s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g3.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g3.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Accusamus dignis</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid grid-mdl">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".5s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g4.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g4.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Ducimus vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid grid-mdl">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".7s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g5.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g5.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Ccusaamus dignis</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid grid-mdl">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".9s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g6.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g6.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Musaccusa dignis</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".5s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g7.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g7.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Qignissimos ducimus</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".7s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g8.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g8.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Dignissimos vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid last">
-									<div class="effect1 wow fadeInUp animated" data-wow-delay=".9s">
-										<a href="<?php bloginfo('template_url'); ?>/images/g9.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g9.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Accusamus digni</p>
-											</div>
-										</a>	
-									</div>
-								</div>
+								<?php } ?>
 								<div class="clearfix"> </div>
 							</div>
 						</div>
-						<div class="tab-1 resp-tab-content">
-							<div class="tab_img">
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g1.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g1.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Qignissimos ducimus</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g4.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g4.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Dignissimos vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g5.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g5.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Accusamus digni</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div class="tab-1 resp-tab-content">
-							<div class="tab_img">
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g3.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g3.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Qignissimos vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g6.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g6.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Accusamus digni</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g9.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g9.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Accusamus ducimus</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div class="tab-1 resp-tab-content">
-							<div class="tab_img">
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g9.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g9.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Qignissimos vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g1.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g1.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Dignissimos ducimus</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="col-md-4 portfolio-grids grid">
-									<div class="effect1">
-										<a href="<?php bloginfo('template_url'); ?>/images/g5.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-											<img src="<?php bloginfo('template_url'); ?>/images/g5.jpg" alt="" class="img-responsive" />
-											<div class="figcaption">
-												<p>Dignissimos  vero</p>
-											</div>
-										</a>	
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -375,7 +183,7 @@
 	
 	
 	<!-- blog -->
-	<div class="blog">
+	<!--<div class="blog">
 		<div class="container">
 			<h3>Seminars</h3>
 			<label class="line"></label>
@@ -415,9 +223,9 @@
 				<div  class="clearfix"></div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	<!-- //blog -->
-	<div class="modal fade" id="myModal" role="dialog">
+	<!--<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -453,7 +261,7 @@
 				
 			</div>
 		</div> 
-	</div>
+	</div>-->
 	<!--contact-->
 	<div class="contact">
 		<div class="container">
@@ -461,28 +269,45 @@
 			<label class="line"></label>
 			<div class="col-md-4 c-w3l">
 				<i class="fa fa-map-marker" aria-hidden="true"></i>
-				<h4>house no:132/8a</h4>
-				<h4>Richmond,USA</h4>
+				<h4><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'address' );	}	?></h4>
 			</div>
 			<div class="col-md-4 c-w3l c-mail">
 				<i class="fa fa-envelope" aria-hidden="true"></i>
-				<h4><a href="mailto:info@example.com">exam@gmail.com</a></h4>
-				<h4><a href="mailto:info@example.com">exam2@yahoo.com</a></h4>
+				<h4><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'email' );	}	?></h4>
 			</div>
 			<div class="col-md-4 c-w3l c-phn">
 				<i class="fa fa-phone" aria-hidden="true"></i>
-				<h4>+18044261158</h4>
-				<h4>+17365481278</h4>
+				<h4><?php if ( function_exists( 'ot_get_option' ) ) {	echo ot_get_option( 'phone_number' );	}	?></h4>
 			</div>
 			<div class="clearfix"></div>
-			<form action="#" method="post">
-				<input type="text" name="name" class="name" placeholder="Your Name" required="">
-				<input type="text" name="email" class="email" placeholder="Your Email" required="">
+			<form action="#" method="post" id="contactForm">
 				<textarea  name="your message" placeholder="Your Message"  required=""></textarea>
-				<input type="submit" value="Send Message">
+				<input type="button" id="submitForm" value="Send Message">
+				<input type="hidden" name="action" value="addCustomer"/>
 			</form>
+			
 		</div>
 	</div>
+	
+	<script>
+	$("#submitForm").on("click",function(){		
+		jQuery.ajax({
+			  type:"POST",
+			  url: "/fareed/wp-admin/admin-ajax.php",
+			  data: {
+				  action: "add_customer",
+				  amount: 1
+			  },
+			  success:function(data){
+			  alert(data);
+			  },
+			  error: function(errorThrown){
+				  alert(errorThrown);
+			  } 
+
+		});
+	});
+	</script>
 	<!--//contact-->
 	
 	<?php get_footer();?>
